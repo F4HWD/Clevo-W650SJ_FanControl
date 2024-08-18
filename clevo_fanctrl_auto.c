@@ -121,11 +121,11 @@ int main() {
 			else if (read_ec(0x0B) < 60) {
 				set_fan_speed(55);
 			}
-			// Temperature < 65°C = fan 60%
+			// Temperature < 65°C = fan 70%
 			else if (read_ec(0x0B) < 65) {
 				set_fan_speed(70);
 			}
-			// Temperature < 70°C = fan 70%
+			// Temperature < 70°C = fan 75%
 			else if (read_ec(0x0B) < 70) {
 				set_fan_speed(75);
 			}
