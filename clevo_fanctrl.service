@@ -1,0 +1,12 @@
+[Unit]
+Description=Clevo W650SJ Fan Control
+
+[Service]
+Type=Simple
+User=root
+Group=root
+ExecStart=/usr/bin/clevo_fanctrl_auto
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
