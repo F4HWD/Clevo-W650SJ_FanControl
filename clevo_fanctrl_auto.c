@@ -34,20 +34,6 @@ static int wait_ec(uint32_t port, uint32_t flag, char value)
     return 1;
 }
 
-static void write_ec(uint32_t port, uint8_t value)
-{
-    wait_ec(EC_SC, IBF, 0);
-    outb(EC_SC_WRITE_CMD, EC_SC);
-
-    wait_ec(EC_SC, IBF, 0);
-    outb(port, EC_DATA);
-
-    wait_ec(EC_SC, IBF, 0);
-    outb(value, EC_DATA);
-
-    wait_ec(EC_SC, IBF, 0);
-}
-
 static void do_ec(uint32_t cmd, uint32_t port, uint8_t value)
 {
     wait_ec(EC_SC, IBF, 0);
