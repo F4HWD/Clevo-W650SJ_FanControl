@@ -1,5 +1,5 @@
 clevo_fanctrl_auto: clevo_fanctrl_auto.c
-	@gcc clevo_fanctrl_auto.c -o clevo_fanctrl_auto
+	@gcc -g -O2 -Wall clevo_fanctrl_auto.c -o clevo_fanctrl_auto
 	@chmod +x clevo_fanctrl_auto
 
 install:
