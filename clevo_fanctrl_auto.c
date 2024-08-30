@@ -52,7 +52,6 @@ static void set_fan_speed(int duty_percentage)
 {
     int value = (int)(duty_percentage * 2.55);
     do_ec(0x99, 0x01, value);
-    //do_ec(0x99, 0x02, v_i);
 }
 
 static uint8_t read_ec(uint32_t port)
