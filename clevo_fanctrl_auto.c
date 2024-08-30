@@ -50,9 +50,9 @@ static void do_ec(uint32_t cmd, uint32_t port, uint8_t value)
 
 static void set_fan_speed(int duty_percentage)
 {
-    int v_i = (int)(duty_percentage / 100.0 * 255.0);
-    do_ec(0x99, 0x01, v_i);
-    do_ec(0x99, 0x02, v_i);
+    int value = (int)(duty_percentage * 2.55);
+    do_ec(0x99, 0x01, value);
+    //do_ec(0x99, 0x02, v_i);
 }
 
 static uint8_t read_ec(uint32_t port)
@@ -68,7 +68,7 @@ static uint8_t read_ec(uint32_t port)
 }
 
 int main() {
-    if (ioperm(0x62, 1, 1) || ioperm(0x66, 1, 1)) {
+    if (ioperm(EC_DATA, 1, 1) || ioperm(EC_SC, 1, 1)) {
         perror("ioperm");
         exit(1);
     }
@@ -80,8 +80,6 @@ int main() {
     while (1) {
         uint8_t temp = read_ec(0x0B);
         if (temp < 55) {
-            set_fan_speed(58);
-        } else if (temp < 60) {
             set_fan_speed(58);
         } else if (temp < 65) {
             set_fan_speed(70);
